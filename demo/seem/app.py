@@ -7,6 +7,9 @@
 
 import os
 import warnings
+import sys
+# Ensure project root is on PYTHONPATH so that 'modeling' and other internal packages can be imported when running the demo from a subdirectory.
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir)))
 import PIL
 from PIL import Image
 from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple

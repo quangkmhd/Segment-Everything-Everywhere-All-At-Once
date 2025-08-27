@@ -20,14 +20,14 @@ def build_tokenizer(config_encoder):
         pretrained_tokenizer = config_encoder.get(
             'PRETRAINED_TOKENIZER', 'openai/clip-vit-base-patch32'
         )
-        tokenizer = CLIPTokenizer.from_pretrained(pretrained_tokenizer)
+        tokenizer = CLIPTokenizer.from_pretrained(pretrained_tokenizer, local_files_only=True)
         tokenizer.add_special_tokens({'cls_token': tokenizer.eos_token})
     elif config_encoder['TOKENIZER'] == 'clip-fast':
         pretrained_tokenizer = config_encoder.get(
             'PRETRAINED_TOKENIZER', 'openai/clip-vit-base-patch32'
         )
-        tokenizer = CLIPTokenizerFast.from_pretrained(pretrained_tokenizer, from_slow=True)
+        tokenizer = CLIPTokenizerFast.from_pretrained(pretrained_tokenizer, from_slow=True, local_files_only=True)
     else:
-        tokenizer = AutoTokenizer.from_pretrained(config_encoder['TOKENIZER'])
+        tokenizer = AutoTokenizer.from_pretrained(config_encoder['TOKENIZER'], local_files_only=True)
 
     return tokenizer
